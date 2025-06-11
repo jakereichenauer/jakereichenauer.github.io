@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jake Reichenauer: Portfolio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div id="canvas">
+    <aside class="sidebar">
+        <h1>JAKE<br>REICHENAUER</h1>
+
+        <div class="nav-wrapper">
+          <nav>
+              <ul>
+                <li><a href="index.html">Model Tests</a></li>
+                <li><a href="swim.html">Swim</a></li>
+                <li><a href="bodywear.html">Bodywear</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="booking.html">Booking</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="https://instagram.com/jaketakesfotos" target="_blank">@jaketakesfotos</a></li>
+                <li><a href="https://instagram.com/jakes.swim" target="_blank">@jakes.swim</a></li>
+              </ul>
+          </nav>
+        </div>
+      <div class="gallery-controls">
+        <a href="#" onclick="prevImage(); return false;">Prev</a>
+        <a href="#" onclick="nextImage(); return false;">Next</a>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="image-area">
+        <div class="click-zone left" onclick="prevImage()">
+          <div class="arrow-icon">&#8249;</div>
+        </div>
+
+        <div class="image-wrapper">
+          <img id="gallery-image" src="images/1port.jpg" alt="Portfolio Image" />
+        </div>
+
+        <div class="click-zone right" onclick="nextImage()">
+          <div class="arrow-icon">&#8250;</div>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script>
+        const images = [
+          "images/model-tests/1.jpg",
+          "images/model-tests/2.jpg",
+          "images/model-tests/3.jpg",
+          "images/model-tests/4.jpg",
+          "images/model-tests/5.jpg",
+          "images/model-tests/6.jpg",
+          "images/model-tests/7.jpg",
+          "images/model-tests/8.jpg",
+          "images/model-tests/9.jpg",
+          "images/model-tests/10.jpg",
+          "images/model-tests/11.jpg",
+          "images/model-tests/12.jpg"
+        ];
+
+        // Fisher–Yates shuffle
+        for (let i = images.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [images[i], images[j]] = [images[j], images[i]];
+        }
+
+        let currentIndex = 0;
+
+        function updateImage() {
+          const img = document.getElementById("gallery-image");
+          img.src = images[currentIndex];
+        }
+
+        function nextImage() {
+          currentIndex = (currentIndex + 1) % images.length;
+          updateImage();
+        }
+
+        function prevImage() {
+          currentIndex = (currentIndex - 1 + images.length) % images.length;
+          updateImage();
+        }
+
+        // Show first image on load
+        updateImage();
+      </script></body>
+</html>
