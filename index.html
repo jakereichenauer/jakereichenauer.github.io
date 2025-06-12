@@ -12,8 +12,23 @@
         <h1>JAKE<br>REICHENAUER</h1>
 
         <div class="nav-wrapper">
-          <button class="menu-toggle" onclick="toggleMenu()">MENU</button>
-          <nav id="mobile-menu" class="hidden">
+          <!-- Desktop Navigation -->
+          <nav class="desktop-menu">
+            <ul>
+              <li><a href="index.html">Model Tests</a></li>
+              <li><a href="swim.html">Swim</a></li>
+              <li><a href="bodywear.html">Bodywear</a></li>
+              <li><a href="about.html">About</a></li>
+              <li><a href="booking.html">Booking</a></li>
+              <li><a href="contact.html">Contact</a></li>
+              <li><a href="https://instagram.com/jaketakesfotos" target="_blank">@jaketakesfotos</a></li>
+              <li><a href="https://instagram.com/jakes.swim" target="_blank">@jakes.swim</a></li>
+            </ul>
+          </nav>
+
+          <!-- Mobile Toggle + Menu -->
+          <button class="menu-toggle" onclick="toggleMenu()">Menu</button>
+          <nav id="mobile-menu" class="hidden mobile-only">
             <ul>
               <li><a href="index.html">Model Tests</a></li>
               <li><a href="swim.html">Swim</a></li>
@@ -94,5 +109,11 @@
 
         // Show first image on load
         updateImage();
-      </script></body>
+      </script>
+      <script>
+          function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+          }
+       </script></body>
 </html>

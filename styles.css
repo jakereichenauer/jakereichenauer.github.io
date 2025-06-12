@@ -246,6 +246,7 @@ p {
   visibility: hidden;
   height: 2rem; /* matches real gallery-controls height */
 }
+
 /* === Mobile Menu Toggle === */
 .menu-toggle {
   display: none;
@@ -258,17 +259,47 @@ p {
   cursor: pointer;
 }
 
-#mobile-menu.hidden {
-  display: none;
+/* Desktop nav always visible by default */
+.desktop-menu {
+  display: block;
 }
 
+/* Mobile nav defaults */
+#mobile-menu {
+  display: none;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+#mobile-menu:not(.hidden) {
+  max-height: 500px;
+  opacity: 1;
+}
+
+/* === Mobile Overrides === */
 @media screen and (max-width: 768px) {
   .menu-toggle {
     display: block;
     margin-bottom: 1rem;
   }
 
+  .desktop-menu {
+    display: none;
+  }
+
   #mobile-menu {
     display: block;
+  }
+
+  #mobile-menu.hidden {
+    max-height: 0;
+    opacity: 0;
+  }
+
+  #mobile-menu:not(.hidden) {
+    max-height: 500px;
+    opacity: 1;
   }
 }
