@@ -172,19 +172,32 @@ p {
 
   .sidebar {
     width: 100%;
-    padding: 2rem 0 1rem 0;
+    padding: 1rem 0 0 0;
     align-items: center;
     text-align: center;
   }
 
   .sidebar h1 {
-    font-size: 1.8rem;
-    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
   }
 
   .nav-wrapper {
     width: 100%;
     align-items: center;
+    margin-top: 1rem;
   }
 
   .sidebar nav ul {
@@ -245,7 +258,7 @@ p {
 
 .gallery-controls.placeholder {
   visibility: hidden;
-  height: 2rem; /* matches real gallery-controls height */
+  height: 2rem;
 }
 
 /* === Mobile Menu Toggle === */
@@ -253,8 +266,8 @@ p {
   display: none;
   background: none;
   border: 1px solid #000;
-  padding: 0.5rem 1rem;
-  font-size: 14px;
+  padding: 0.4rem 0.8rem;
+  font-size: 12px;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   cursor: pointer;
@@ -283,7 +296,7 @@ p {
 @media screen and (max-width: 768px) {
   .menu-toggle {
     display: block;
-    margin-bottom: 1rem;
+    margin: 0;
   }
 
   .desktop-menu {
