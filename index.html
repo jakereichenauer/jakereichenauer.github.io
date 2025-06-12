@@ -9,44 +9,42 @@
 <body>
   <div id="canvas">
     <aside class="sidebar">
-        <div class="mobile-header">
-          <h1>JAKE REICHENAUER</h1>
-          <button class="menu-toggle" onclick="toggleMenu()">Menu</button>
-        </div>
-
-        <div class="nav-wrapper">
-          <!-- Desktop Navigation -->
-          <nav class="desktop-menu">
-            <ul>
-              <li><a href="index.html">Model Tests</a></li>
-              <li><a href="swim.html">Swim</a></li>
-              <li><a href="bodywear.html">Bodywear</a></li>
-              <li><a href="about.html">About</a></li>
-              <li><a href="booking.html">Booking</a></li>
-              <li><a href="contact.html">Contact</a></li>
-              <li><a href="https://instagram.com/jaketakesfotos" target="_blank">@jaketakesfotos</a></li>
-              <li><a href="https://instagram.com/jakes.swim" target="_blank">@jakes.swim</a></li>
-            </ul>
-          </nav>
-
-          <!-- Mobile Toggle + Menu -->
-          <nav id="mobile-menu" class="hidden mobile-only">
-            <ul>
-              <li><a href="index.html">Model Tests</a></li>
-              <li><a href="swim.html">Swim</a></li>
-              <li><a href="bodywear.html">Bodywear</a></li>
-              <li><a href="about.html">About</a></li>
-              <li><a href="booking.html">Booking</a></li>
-              <li><a href="contact.html">Contact</a></li>
-              <li><a href="https://instagram.com/jaketakesfotos" target="_blank">@jaketakesfotos</a></li>
-              <li><a href="https://instagram.com/jakes.swim" target="_blank">@jakes.swim</a></li>
-            </ul>
-          </nav>
-        </div>
-      <div class="gallery-controls">
-        <a href="#" onclick="prevImage(); return false;">Prev</a>
-        <a href="#" onclick="nextImage(); return false;">Next</a>
+      <div class="mobile-header">
+        <h1>JAKE REICHENAUER</h1>
+        <button class="menu-toggle" onclick="toggleMenu()">Menu</button>
       </div>
+
+      <div class="nav-wrapper">
+        <!-- Desktop Navigation -->
+        <nav class="desktop-menu">
+          <ul>
+            <li><a href="index.html">Model Tests</a></li>
+            <li><a href="swim.html">Swim</a></li>
+            <li><a href="bodywear.html">Bodywear</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="https://instagram.com/jaketakesfotos" target="_blank">@jaketakesfotos</a></li>
+            <li><a href="https://instagram.com/jakes.swim" target="_blank">@jakes.swim</a></li>
+          </ul>
+        </nav>
+
+        <!-- Mobile Toggle + Menu -->
+        <nav id="mobile-menu" class="hidden mobile-only">
+          <ul>
+            <li><a href="index.html">Model Tests</a></li>
+            <li><a href="swim.html">Swim</a></li>
+            <li><a href="bodywear.html">Bodywear</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="https://instagram.com/jaketakesfotos" target="_blank">@jaketakesfotos</a></li>
+            <li><a href="https://instagram.com/jakes.swim" target="_blank">@jakes.swim</a></li>
+          </ul>
+        </nav>
+      </div>
+      
+      <!-- Removed gallery-controls -->
     </aside>
 
     <main class="main-content">
@@ -67,56 +65,57 @@
   </div>
 
   <script>
-        const images = [
-          "images/model-tests/1.jpg",
-          "images/model-tests/2.jpg",
-          "images/model-tests/3.jpg",
-          "images/model-tests/4.jpg",
-          "images/model-tests/5.jpg",
-          "images/model-tests/6.jpg",
-          "images/model-tests/7.jpg",
-          "images/model-tests/8.jpg",
-          "images/model-tests/9.jpg",
-          "images/model-tests/10.jpg",
-          "images/model-tests/11.jpg",
-          "images/model-tests/12.jpg",
-          "images/model-tests/13.jpg",
-          "images/model-tests/14.jpg",
-          "images/model-tests/15.jpg",
-          "images/model-tests/16.jpg"
-        ];
+    const images = [
+      "images/model-tests/1.jpg",
+      "images/model-tests/2.jpg",
+      "images/model-tests/3.jpg",
+      "images/model-tests/4.jpg",
+      "images/model-tests/5.jpg",
+      "images/model-tests/6.jpg",
+      "images/model-tests/7.jpg",
+      "images/model-tests/8.jpg",
+      "images/model-tests/9.jpg",
+      "images/model-tests/10.jpg",
+      "images/model-tests/11.jpg",
+      "images/model-tests/12.jpg",
+      "images/model-tests/13.jpg",
+      "images/model-tests/14.jpg",
+      "images/model-tests/15.jpg",
+      "images/model-tests/16.jpg"
+    ];
 
-        // Fisher–Yates shuffle
-        for (let i = images.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [images[i], images[j]] = [images[j], images[i]];
-        }
+    // Fisher–Yates shuffle
+    for (let i = images.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [images[i], images[j]] = [images[j], images[i]];
+    }
 
-        let currentIndex = 0;
+    let currentIndex = 0;
 
-        function updateImage() {
-          const img = document.getElementById("gallery-image");
-          img.src = images[currentIndex];
-        }
+    function updateImage() {
+      const img = document.getElementById("gallery-image");
+      img.src = images[currentIndex];
+    }
 
-        function nextImage() {
-          currentIndex = (currentIndex + 1) % images.length;
-          updateImage();
-        }
+    function nextImage() {
+      currentIndex = (currentIndex + 1) % images.length;
+      updateImage();
+    }
 
-        function prevImage() {
-          currentIndex = (currentIndex - 1 + images.length) % images.length;
-          updateImage();
-        }
+    function prevImage() {
+      currentIndex = (currentIndex - 1 + images.length) % images.length;
+      updateImage();
+    }
 
-        // Show first image on load
-        updateImage();
-      </script>
-      <script>
-          function toggleMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-          }
-       </script>
+    // Show first image on load
+    updateImage();
+  </script>
+
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+  </script>
 </body>
 </html>

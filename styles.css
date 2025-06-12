@@ -49,6 +49,7 @@ a:hover {
 .sidebar h1 {
   text-align: center;
   margin-bottom: 2rem;
+  display: block;
 }
 
 .nav-wrapper {
@@ -99,6 +100,11 @@ a:hover {
   color: #888;
 }
 
+.gallery-controls.placeholder {
+  visibility: hidden;
+  height: 2rem;
+}
+
 /* === Main Image Area === */
 .main-content {
   flex-grow: 1;
@@ -146,6 +152,19 @@ a:hover {
   cursor: e-resize;
 }
 
+.arrow-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: black;
+  opacity: 0.6;
+}
+.arrow-icon:hover {
+  opacity: 1;
+}
+
 /* === Typography === */
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
@@ -156,7 +175,16 @@ p {
   margin-bottom: 1em;
 }
 
+/* === Mobile Menu Toggle === */
 .menu-toggle {
+  color: #000;
+  background: none;
+  border: 1px solid #000;
+  padding: 0.4rem 0.8rem;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
   display: none;
 }
 
@@ -164,7 +192,31 @@ p {
   display: none;
 }
 
-/* === Responsive Design === */
+/* === Desktop Nav === */
+.desktop-menu {
+  display: block;
+}
+
+/* === Mobile Menu Base === */
+#mobile-menu {
+  position: absolute;
+  top: 3.5rem;
+  left: 0;
+  right: 0;
+  background: white;
+  z-index: 1000;
+  display: none;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+#mobile-menu:not(.hidden) {
+  max-height: 500px;
+  opacity: 1;
+}
+
+/* === Mobile Overrides === */
 @media screen and (max-width: 768px) {
   body {
     flex-direction: column;
@@ -191,6 +243,7 @@ p {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    display: block;
   }
 
   .mobile-header {
@@ -200,6 +253,24 @@ p {
     width: 100%;
     padding: 1rem;
     box-sizing: border-box;
+  }
+
+  .menu-toggle {
+    display: block;
+    margin: 0;
+  }
+
+  .desktop-menu {
+    display: none;
+  }
+
+  #mobile-menu {
+    display: block;
+  }
+
+  #mobile-menu.hidden {
+    max-height: 0;
+    opacity: 0;
   }
 
   .nav-wrapper {
@@ -222,114 +293,54 @@ p {
 
   .main-content {
     width: 100%;
-    padding: 20px 0 10px 0;  /* reduced vertical padding */
+    padding: 0;
     flex-direction: column;
     align-items: center;
   }
 
   .image-area {
     width: 100%;
-    flex-direction: column;
-    height: auto;
+    height: 80vh;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     position: relative;
   }
 
   .image-wrapper {
-    width: 100%;
-    height: auto;
-    padding: 0;
+    max-width: 100%;
+    max-height: 100%;
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .image-wrapper img {
-    width: 100%;
-    height: auto;
+    width: auto;
+    max-width: 100%;
+    max-height: 100%;
     object-fit: contain;
   }
 
   .click-zone {
-    display: none;
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 15%;
+    z-index: 10;
+  }
+
+  .click-zone.left {
+    left: 0;
+  }
+
+  .click-zone.right {
+    right: 0;
   }
 
   .gallery-controls {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    margin-bottom: 1rem;
-  }
-
-  .gallery-controls {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;               /* tighter spacing between buttons */
-    margin-top: 0.5rem;      /* reduce space above */
-    margin-bottom: 0.5rem;   /* reduce space below */
-  }
-}
-
-.gallery-controls.placeholder {
-  visibility: hidden;
-  height: 2rem;
-}
-
-/* === Mobile Menu Toggle === */
-.menu-toggle {
-  color: #000;         /* ← add this */
-  background: none;
-  border: 1px solid #000;
-  padding: 0.4rem 0.8rem;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  cursor: pointer;
-}
-
-/* Desktop nav always visible by default */
-.desktop-menu {
-  display: block;
-}
-
-/* Mobile nav defaults */
-#mobile-menu {
-  position: absolute;          /* ← overlays content */
-  top: 3.5rem;                 /* adjust based on menu-toggle height */
-  left: 0;
-  right: 0;
-  background: white;
-  z-index: 1000;
-  display: none;
-  overflow: hidden;
-  max-height: 0;
-  opacity: 0;
-  transition: max-height 0.3s ease, opacity 0.3s ease;
-}
-
-#mobile-menu:not(.hidden) {
-  max-height: 500px;
-  opacity: 1;
-}
-
-/* === Mobile Overrides === */
-@media screen and (max-width: 768px) {
-  .menu-toggle {
-    display: block;
-    margin: 0;
-  }
-
-  .desktop-menu {
     display: none;
-  }
-
-  #mobile-menu {
-    display: block;
-  }
-
-  #mobile-menu.hidden {
-    max-height: 0;
-    opacity: 0;
-  }
-
-  #mobile-menu:not(.hidden) {
-    max-height: 500px;
-    opacity: 1;
   }
 }
