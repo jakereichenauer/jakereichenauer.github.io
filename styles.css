@@ -246,3 +246,29 @@ p {
   visibility: hidden;
   height: 2rem; /* matches real gallery-controls height */
 }
+/* === Mobile Menu Toggle === */
+.menu-toggle {
+  display: none;
+  background: none;
+  border: 1px solid #000;
+  padding: 0.5rem 1rem;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+}
+
+#mobile-menu.hidden {
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+    margin-bottom: 1rem;
+  }
+
+  #mobile-menu {
+    display: block;
+  }
+}
