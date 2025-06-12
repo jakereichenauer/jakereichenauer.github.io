@@ -156,6 +156,14 @@ p {
   margin-bottom: 1em;
 }
 
+.menu-toggle {
+  display: none;
+}
+
+.mobile-header {
+  display: none;
+}
+
 /* === Responsive Design === */
 @media screen and (max-width: 768px) {
   body {
