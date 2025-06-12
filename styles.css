@@ -214,7 +214,7 @@ p {
 
   .main-content {
     width: 100%;
-    padding: 0;
+    padding: 20px 0 10px 0;  /* reduced vertical padding */
     flex-direction: column;
     align-items: center;
   }
@@ -249,10 +249,12 @@ p {
     margin-bottom: 1rem;
   }
 
-  .gallery-controls a {
-    display: inline-block;
-    margin: 0 0.5rem;
-    font-size: 14px;
+  .gallery-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;               /* tighter spacing between buttons */
+    margin-top: 0.5rem;      /* reduce space above */
+    margin-bottom: 0.5rem;   /* reduce space below */
   }
 }
 
@@ -263,7 +265,7 @@ p {
 
 /* === Mobile Menu Toggle === */
 .menu-toggle {
-  display: none;
+  color: #000;         /* ← add this */
   background: none;
   border: 1px solid #000;
   padding: 0.4rem 0.8rem;
@@ -280,6 +282,12 @@ p {
 
 /* Mobile nav defaults */
 #mobile-menu {
+  position: absolute;          /* ← overlays content */
+  top: 3.5rem;                 /* adjust based on menu-toggle height */
+  left: 0;
+  right: 0;
+  background: white;
+  z-index: 1000;
   display: none;
   overflow: hidden;
   max-height: 0;
