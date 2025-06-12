@@ -125,7 +125,9 @@ a:hover {
 }
 
 .image-wrapper img {
-  max-height: 90vh;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 /* === Click zones for arrow navigation === */
@@ -203,10 +205,10 @@ p {
     position: relative;
   }
 
-  .image-wrapper img {
+  .image-wrapper {
     width: 100%;
     height: auto;
-    object-fit: contain;
+    padding: 0 1rem;
   }
 
   .click-zone {
