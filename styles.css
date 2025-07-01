@@ -52,6 +52,16 @@ a:hover {
   display: block;
 }
 
+.desktop-header {
+  display: block;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
 /* Force visibility in case index.html was hiding it */
 @media screen and (min-width: 769px) {
   .sidebar h1 {
