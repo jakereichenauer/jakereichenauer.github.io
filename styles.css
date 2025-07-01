@@ -238,6 +238,10 @@ p {
     padding: 0;
     align-items: stretch;
   }
+  
+  .desktop-header {
+    display: none;
+  }
 
   #canvas {
     flex-direction: column;
