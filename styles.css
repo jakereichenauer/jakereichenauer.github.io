@@ -5,6 +5,16 @@
   padding: 0;
 }
 
+.site-title {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.2;
+  margin: 0;
+  text-align: left;
+  color: #121212;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -242,6 +252,10 @@ p {
   .desktop-header {
     display: none;
   }
+  
+  .site-title {
+      font-size: 1.2rem;
+    }
 
   #canvas {
     flex-direction: column;
