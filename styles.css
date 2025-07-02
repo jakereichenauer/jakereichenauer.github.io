@@ -267,7 +267,7 @@ p {
   .nav-wrapper {
     width: 100%;
     align-items: center;
-    margin-top: 1rem;
+    margin-top: 0.5rem;
   }
 
   .sidebar nav ul {
@@ -285,7 +285,7 @@ p {
   .main-content {
     width: 100%;
     flex-grow: 1;
-    padding-top: 1rem;
+    padding-top: 0.5rem;
     padding-bottom: 80px;
     display: flex;
     justify-content: center;
