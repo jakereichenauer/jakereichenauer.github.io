@@ -288,16 +288,16 @@ p {
   .main-content {
     width: 100%;
     flex-grow: 1;
-    padding: 0;
+    padding: 0; /* <-- removed 80px padding */
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: calc(100vh - 64px); /* approximate header height */
   }
 
   .image-area {
     width: 100%;
-    height: calc(100vh - 64px); /* subtracts mobile header */
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
