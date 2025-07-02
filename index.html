@@ -6,28 +6,42 @@
   <title>Jake Reichenauer: Portfolio</title>
   <link rel="stylesheet" href="styles.css" />
   <style>
-    .top-controls {
-      display: none;
-    }
-
+    /* === Mobile-specific next/prev arrows === */
     @media screen and (max-width: 768px) {
       .top-controls {
-        display: flex;
-        justify-content: space-between;
-        padding: 0.75rem 1rem 0.25rem;
-        width: 100%;
-        font-size: 1.5rem;
-        z-index: 50;
-        position: relative;
-        background: white;
+        display: none;
       }
 
-      .top-controls button {
-        background: none;
-        border: none;
+      .side-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
         font-size: 2rem;
-        color: #000;
+        color: black;
+        background: rgba(255, 255, 255, 0.6);
+        border-radius: 4px;
+        padding: 0.2rem 0.6rem;
+        z-index: 10;
         cursor: pointer;
+        user-select: none;
+        pointer-events: auto;
+      }
+
+      .side-arrow.left {
+        left: 1rem;
+      }
+
+      .side-arrow.right {
+        right: 1rem;
+      }
+
+      .side-arrow:hover {
+        background: rgba(255, 255, 255, 0.9);
+      }
+
+      /* Remove click-zones on mobile */
+      .click-zone {
+        display: none;
       }
     }
   </style>
@@ -67,24 +81,21 @@
         </nav>
       </div>
     </aside>
+
     <main class="main-content">
-      <div class="top-controls">
-        <button onclick="prevImage()">&#8249;</button>
-        <button onclick="nextImage()">&#8250;</button>
-      </div>
       <div class="image-area" id="image-area">
-        <div class="click-zone left" onclick="prevImage()">
-          <div class="arrow-icon">&#8249;</div>
-        </div>
+        <!-- Side arrows for mobile -->
+        <div class="side-arrow left" onclick="prevImage()">&#10094;</div>
+
         <div class="image-wrapper">
           <img id="gallery-image" src="images/1port.jpg" alt="Portfolio Image" />
         </div>
-        <div class="click-zone right" onclick="nextImage()">
-          <div class="arrow-icon">&#8250;</div>
-        </div>
+
+        <div class="side-arrow right" onclick="nextImage()">&#10095;</div>
       </div>
     </main>
   </div>
+
   <script>
     const images = [
       "images/model-tests/1.jpg",
@@ -160,4 +171,3 @@
   </script>
 </body>
 </html>
-

@@ -153,6 +153,31 @@ body {
   pointer-events: none;
 }
 
+/* === Side Arrow Buttons (mobile) === */
+.side-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: black;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 4px;
+  padding: 0.2rem 0.6rem;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+  pointer-events: auto;
+}
+.side-arrow.left {
+  left: 1rem;
+}
+.side-arrow.right {
+  right: 1rem;
+}
+.side-arrow:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
 /* === Typography === */
 h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
@@ -328,41 +353,12 @@ p {
   }
 
   .click-zone {
-    display: block;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 15%;
-    z-index: 10;
-  }
-
-  .click-zone.left {
-    left: 0;
-  }
-
-  .click-zone.right {
-    right: 0;
-  }
-
-  .arrow-icon {
-    opacity: 0.7;
-    color: black;
-    font-size: 2rem;
-    pointer-events: none;
-  }
-
-  .gallery-controls {
     display: none;
   }
 
+  .gallery-controls,
   .image-controls {
-    top: 72px;
-    padding: 0 0.5rem;
-  }
-
-  .image-controls button {
-    font-size: 12px;
-    padding: 0.3rem 0.6rem;
+    display: none;
   }
 }
 
