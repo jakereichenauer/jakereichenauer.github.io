@@ -5,35 +5,65 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jake Reichenauer: Contact</title>
   <link rel="stylesheet" href="styles.css" />
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+  </script>
 </head>
 <body>
   <div id="canvas">
-    <aside class="sidebar">
-        <h1>JAKE<br>REICHENAUER</h1>
 
-        <div class="nav-wrapper">
-          <nav>
-              <ul>
-                <li><a href="index.html">Model Tests</a></li>
-                <li><a href="swim.html">Swim</a></li>
-                <li><a href="bodywear.html">Bodywear</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="booking.html">Booking</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="https://instagram.com/jaketakesfotos" target="_blank">@jaketakesfotos</a></li>
-                <li><a href="https://instagram.com/jakes.swim" target="_blank">@jakes.swim</a></li>
-              </ul>
-          </nav>
-        </div>
+    <!-- Mobile Header -->
+    <header class="mobile-header">
+      <h1 class="mobile-title">Jake Reichenauer</h1>
+      <button class="menu-toggle" onclick="toggleMenu()">Menu</button>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <h1 class="desktop-header">JAKE<br>REICHENAUER</h1>
+
+      <!-- Mobile Menu -->
+      <nav id="mobile-menu" class="hidden">
+        <ul>
+          <li><a href="index.html">Model Tests</a></li>
+          <li><a href="swim.html">Swim</a></li>
+          <li><a href="bodywear.html">Bodywear</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="booking.html">Booking</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="https://instagram.com/jaketakesfotos" target="_blank">@jaketakesfotos</a></li>
+          <li><a href="https://instagram.com/jakes.swim" target="_blank">@jakes.swim</a></li>
+        </ul>
+      </nav>
+
+      <!-- Desktop Navigation -->
+      <div class="nav-wrapper desktop-menu">
+        <nav>
+          <ul>
+            <li><a href="index.html">Model Tests</a></li>
+            <li><a href="swim.html">Swim</a></li>
+            <li><a href="bodywear.html">Bodywear</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="booking.html">Booking</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="https://instagram.com/jaketakesfotos" target="_blank">@jaketakesfotos</a></li>
+            <li><a href="https://instagram.com/jakes.swim" target="_blank">@jakes.swim</a></li>
+          </ul>
+        </nav>
+      </div>
     </aside>
 
+    <!-- Main Content -->
     <main class="main-content">
-      <div class="contact-area">
+      <div class="text-content">
         <h2>Contact</h2>
         <p>For inquiries, bookings, collaborations, or agency tests, feel free to reach out:</p>
         <p><a href="mailto:jacob.reichenauer@gmail.com">jacob.reichenauer@gmail.com</a></p>
-        <p>Or connect via Instagram: <a href="https://instagram.com/jaketakesfotos" target="_blank">@jaketakesfotos</a></p>
-        <p>You can also reach me by my Instagram swim page: <a href="https://instagram.com/jakes.swim" target="_blank">@jaketakesfotos</a></p>
+        <p>Connect on Instagram: <a href="https://instagram.com/jaketakesfotos" target="_blank">@jaketakesfotos</a></p>
+        <p>Or through my swim page: <a href="https://instagram.com/jakes.swim" target="_blank">@jakes.swim</a></p>
       </div>
     </main>
   </div>
