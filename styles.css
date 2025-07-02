@@ -198,6 +198,21 @@ p {
   margin-bottom: 1em;
 }
 
+/* === About Text Styling === */
+.text-content {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  text-align: center;
+}
+
+@media screen and (min-width: 769px) {
+  .text-content {
+    padding: 2rem;
+    text-align: left;
+  }
+}
+
 /* === Menu Button (Mobile) === */
 .menu-toggle {
   color: #000;
@@ -333,7 +348,7 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 64px);
+    height: auto;
     box-sizing: border-box;
   }
 
@@ -369,6 +384,11 @@ p {
   .gallery-controls,
   .image-controls {
     display: none;
+  }
+
+  .text-content {
+    text-align: center;
+    padding: 2rem 1.5rem;
   }
 }
 
