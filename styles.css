@@ -5,9 +5,11 @@
   padding: 0;
 }
 
+html, body {
+  height: 100%;
+}
+
 body {
-  margin: 0;
-  padding: 0;
   display: flex;
   justify-content: center;
   background-color: #fff;
@@ -15,14 +17,6 @@ body {
   font-size: 14px;
   line-height: 1.5;
   color: #333;
-}
-
-a {
-  color: #000;
-  text-decoration: none;
-}
-a:hover {
-  color: #ff0;
 }
 
 /* === Layout === */
@@ -56,12 +50,12 @@ a:hover {
   text-transform: uppercase;
 }
 
-.mobile-header {
+.mobile-header,
+.mobile-title {
   display: none;
 }
 
 .mobile-title {
-  display: none;
   font-size: 1.5rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -216,7 +210,6 @@ p {
 
   body {
     flex-direction: column;
-    padding: 0;
     align-items: stretch;
     overflow-x: hidden;
   }
