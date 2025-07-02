@@ -5,22 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jake Reichenauer: Portfolio</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    .top-controls {
+      display: none;
+    }
+
+    @media screen and (max-width: 768px) {
+      .top-controls {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.75rem 1rem 0.25rem;
+        width: 100%;
+        font-size: 1.5rem;
+        z-index: 50;
+        position: relative;
+        background: white;
+      }
+
+      .top-controls button {
+        background: none;
+        border: none;
+        font-size: 2rem;
+        color: #000;
+        cursor: pointer;
+      }
+    }
+  </style>
 </head>
 <body>
   <div id="canvas">
     <aside class="sidebar">
-      <!-- Desktop header -->
       <h1 class="desktop-header">JAKE<br>REICHENAUER</h1>
-
-      <!-- Mobile header -->
       <div class="mobile-header">
         <h1 class="mobile-title">JAKE REICHENAUER</h1>
         <button class="menu-toggle" onclick="toggleMenu()">Menu</button>
       </div>
-
-      <!-- Navigation -->
       <div class="nav-wrapper">
-        <!-- Desktop nav -->
         <nav class="desktop-menu">
           <ul>
             <li><a href="index.html">Model Tests</a></li>
@@ -33,8 +53,6 @@
             <li><a href="https://instagram.com/jakes.swim" target="_blank">@jakes.swim</a></li>
           </ul>
         </nav>
-
-        <!-- Mobile nav -->
         <nav id="mobile-menu" class="hidden mobile-only">
           <ul>
             <li><a href="index.html">Model Tests</a></li>
@@ -49,24 +67,24 @@
         </nav>
       </div>
     </aside>
-
     <main class="main-content">
-      <div class="image-area">
+      <div class="top-controls">
+        <button onclick="prevImage()">&#8249;</button>
+        <button onclick="nextImage()">&#8250;</button>
+      </div>
+      <div class="image-area" id="image-area">
         <div class="click-zone left" onclick="prevImage()">
           <div class="arrow-icon">&#8249;</div>
         </div>
-
         <div class="image-wrapper">
           <img id="gallery-image" src="images/1port.jpg" alt="Portfolio Image" />
         </div>
-
         <div class="click-zone right" onclick="nextImage()">
           <div class="arrow-icon">&#8250;</div>
         </div>
       </div>
     </main>
   </div>
-
   <script>
     const images = [
       "images/model-tests/1.jpg",
@@ -87,7 +105,6 @@
       "images/model-tests/16.jpg"
     ];
 
-    // Fisher–Yates shuffle
     for (let i = images.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [images[i], images[j]] = [images[j], images[i]];
@@ -110,15 +127,37 @@
       updateImage();
     }
 
-    // Show first image on load
     updateImage();
-  </script>
 
-  <script>
     function toggleMenu() {
       const menu = document.getElementById('mobile-menu');
       menu.classList.toggle('hidden');
     }
+
+    // Touch swipe support
+    let touchStartX = 0;
+    let touchEndX = 0;
+
+    const imageArea = document.getElementById('image-area');
+
+    imageArea.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+
+    imageArea.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+
+    function handleSwipe() {
+      const swipeDistance = touchEndX - touchStartX;
+      if (swipeDistance > 50) {
+        prevImage();
+      } else if (swipeDistance < -50) {
+        nextImage();
+      }
+    }
   </script>
 </body>
 </html>
+
