@@ -5,16 +5,6 @@
   padding: 0;
 }
 
-.site-title {
-  font-size: 1.5rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  line-height: 1.2;
-  margin: 0;
-  text-align: left;
-  color: #121212;
-}
-
 body {
   margin: 0;
   padding: 0;
@@ -70,6 +60,18 @@ a:hover {
   line-height: 1.2;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+}
+
+.mobile-title {
+  display: none;
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  color: #121212;
 }
 
 /* Force visibility in case index.html was hiding it */
@@ -248,25 +250,29 @@ p {
     padding: 0;
     align-items: stretch;
   }
-  
+
   .desktop-header {
     display: none;
   }
-  
-  .site-title {
-      font-size: 1.2rem;
-    }
 
-  #canvas {
-    flex-direction: column;
-    gap: 2rem;
-    padding: 0 1rem;
-    height: 100vh; /* Ensure mobile fills screen */
+  .mobile-title {
+    display: block;
+    font-size: 1.2rem;
+  }
+
+  .mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
   }
 
   .sidebar {
     width: 100%;
-    padding: 1rem 0 0 0;
+    padding-top: 0;
+    margin-top: 0;
     align-items: center;
     text-align: center;
   }
@@ -278,15 +284,6 @@ p {
     overflow: hidden;
     text-overflow: ellipsis;
     display: block;
-  }
-
-  .mobile-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-    padding: 1rem;
-    box-sizing: border-box;
   }
 
   .menu-toggle {
@@ -328,7 +325,8 @@ p {
   .main-content {
     width: 100%;
     flex-grow: 1;
-    padding: 0;
+    padding-top: 1rem;
+    padding-bottom: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
