@@ -15,6 +15,7 @@ body {
   font-size: 14px;
   line-height: 1.5;
   color: #333;
+  height: 100vh;
 }
 
 a {
@@ -107,15 +108,16 @@ a:hover {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 80px;
-  padding-bottom: 80px;
+  padding: 0;
 }
 
 .image-area {
   display: flex;
   align-items: center;
+  justify-content: center;
   position: relative;
-  height: 80vh;
+  height: 100vh;
+  width: 100%;
 }
 
 .image-wrapper {
@@ -123,12 +125,13 @@ a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100%;
+  max-height: 100vh;
+  width: 100%;
 }
 
 .image-wrapper img {
   max-height: 100%;
-  width: auto;
+  max-width: 100%;
   object-fit: contain;
   display: block;
 }
@@ -208,19 +211,20 @@ p {
 
 /* === Mobile Overrides === */
 @media screen and (max-width: 768px) {
+  html, body {
+    height: 100%;
+  }
+
   body {
     flex-direction: column;
     padding: 0;
     align-items: stretch;
-    overflow-x: hidden;
   }
 
   #canvas {
     flex-direction: column;
     padding: 0;
     gap: 0;
-    width: 100vw;
-    height: 100vh;
   }
 
   .desktop-header {
@@ -292,17 +296,16 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+    height: calc(100vh - 60px);
   }
 
   .image-area {
     width: 100%;
-    height: calc(100vh - 64px); /* subtracts mobile header */
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    overflow: hidden;
   }
 
   .image-wrapper {
@@ -314,12 +317,10 @@ p {
   }
 
   .image-wrapper img {
+    width: auto;
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    height: auto;
-    width: auto;
-    display: block;
   }
 
   .click-zone {
