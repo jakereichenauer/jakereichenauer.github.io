@@ -208,6 +208,12 @@ p {
 
 /* === Mobile Overrides === */
 @media screen and (max-width: 768px) {
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
   body {
     flex-direction: column;
     padding: 0;
@@ -220,7 +226,7 @@ p {
     padding: 0;
     gap: 0;
     width: 100vw;
-    height: 100vh;
+    height: 100%;
   }
 
   .desktop-header {
@@ -243,8 +249,8 @@ p {
 
   .sidebar {
     width: 100%;
-    padding-top: 0;
-    margin-top: 0;
+    padding: 0;
+    margin: 0;
     align-items: center;
     text-align: center;
   }
@@ -286,13 +292,13 @@ p {
   }
 
   .main-content {
+    flex: 1;
+    min-height: 0;
     width: 100%;
-    flex-grow: 1;
-    padding: 0; /* <-- removed 80px padding */
+    padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 64px); /* approximate header height */
   }
 
   .image-area {
@@ -317,8 +323,6 @@ p {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
-    height: auto;
-    width: auto;
     display: block;
   }
 
