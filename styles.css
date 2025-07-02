@@ -101,30 +101,6 @@ a:hover {
   color: #000;
 }
 
-/* === Gallery Controls === */
-.gallery-controls {
-  text-align: center;
-  margin-top: 2rem;
-}
-
-.gallery-controls a {
-  display: inline-block;
-  margin: 0 0.5rem;
-  font-size: 14px;
-  color: #000;
-  text-decoration: none;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-}
-.gallery-controls a:hover {
-  color: #888;
-}
-
-.gallery-controls.placeholder {
-  visibility: hidden;
-  height: 2rem;
-}
-
 /* === Main Image Area === */
 .main-content {
   flex-grow: 1;
@@ -236,6 +212,12 @@ p {
     flex-direction: column;
     padding: 0;
     align-items: stretch;
+  }
+
+  #canvas {
+    flex-direction: column;
+    padding: 0;
+    gap: 0;
   }
 
   .desktop-header {
