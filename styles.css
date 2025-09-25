@@ -194,11 +194,11 @@ body {
   color: rgba(50, 50, 50, 0.85);
 }
 
-/* === Mosaic Gallery Styles (Pinterest-Style: No Cropping, Variable Sizes) === */
+/* === Mosaic Gallery Styles (Pixieset-Like: Variable, No Crop, Tight Fit) === */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 8px;
   padding: 20px;
   width: 100%;
   min-height: 80vh;
@@ -207,23 +207,28 @@ body {
 .gallery-item {
   overflow: hidden;
   border-radius: 8px;
-  /* Allow variable heights based on image aspect ratio */
   height: auto;
+  aspect-ratio: auto;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.02);
 }
 
 .gallery-item img {
   width: 100%;
-  height: auto; /* Key change: Preserve original height/aspect ratio */
-  object-fit: contain; /* No cropping—shows full image with space if needed */
+  height: auto;
+  object-fit: contain;
   display: block;
 }
 
 .gallery-item.tall {
-  grid-row: span 2; /* Spans 2 rows for tall images */
+  grid-row: span 2;
 }
 
 .gallery-item.wide {
-  grid-column: span 2; /* Spans 2 columns for wide images */
+  grid-column: span 2;
 }
 
 /* === Toggle Button === */
@@ -441,7 +446,8 @@ p {
   }
 
   .gallery {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 5px;
     padding: 10px;
     height: auto;
     min-height: 60vh;
