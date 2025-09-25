@@ -1,0 +1,34 @@
+{
+  "images": [
+    {
+      "src": "images/model-tests/P1.jpg",
+      "alt": "Portfolio Image 1: Model test shoot",
+      "type": "normal",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P2.jpg",
+      "alt": "Portfolio Image 2: Outdoor portrait",
+      "type": "tall",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P3.jpg",
+      "alt": "Portfolio Image 3: Studio lighting",
+      "type": "wide",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/books/book1.jpg",
+      "alt": "Book Cover 1: Sci-fi novel",
+      "type": "normal",
+      "category": "books"
+    },
+    {
+      "src": "images/books/book2.jpg",
+      "alt": "Book Cover 2: Fantasy novel",
+      "type": "tall",
+      "category": "books"
+    }
+  ]
+}

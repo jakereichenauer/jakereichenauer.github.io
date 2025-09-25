@@ -5,46 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jake Reichenauer: Portfolio</title>
   <link rel="stylesheet" href="styles.css" />
-  <style>
-    /* === Mobile-specific next/prev arrows === */
-    @media screen and (max-width: 768px) {
-      .top-controls {
-        display: none;
-      }
-
-      .side-arrow {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        font-size: 2rem;
-        color: black;
-        background: rgba(255, 255, 255, 0.6);
-        border-radius: 4px;
-        padding: 0.2rem 0.6rem;
-        z-index: 10;
-        cursor: pointer;
-        user-select: none;
-        pointer-events: auto;
-      }
-
-      .side-arrow.left {
-        left: 1rem;
-      }
-
-      .side-arrow.right {
-        right: 1rem;
-      }
-
-      .side-arrow:hover {
-        background: rgba(255, 255, 255, 0.9);
-      }
-
-      /* Remove click-zones on mobile */
-      .click-zone {
-        display: none;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
 </head>
 <body>
   <div id="canvas">
@@ -75,140 +36,30 @@
     </aside>
 
     <main class="main-content">
-      <div class="image-area" id="image-area">
-        <!-- Side arrows for mobile -->
-        <div class="side-arrow left" onclick="prevImage()">&#10094;</div>
-
+      <div class="view-toggle">
+        <button id="toggle-view" onclick="toggleView()">Switch to Mosaic View</button>
+      </div>
+      <div id="single-view" class="image-area">
+        <div class="click-zone left" onclick="prevImage()"><span class="arrow-icon">&#10094;</span></div>
         <div class="image-wrapper">
-          <img id="gallery-image" src="images/1port.jpg" alt="Portfolio Image" />
+          <img id="gallery-image" src="images/model-tests/P1.jpg" alt="Portfolio Image" />
         </div>
-
+        <div class="click-zone right" onclick="nextImage()"><span class="arrow-icon">&#10095;</span></div>
+        <div class="side-arrow left" onclick="prevImage()">&#10094;</div>
         <div class="side-arrow right" onclick="nextImage()">&#10095;</div>
       </div>
+      <section id="mosaic-view" class="gallery hidden">
+        <!-- JavaScript will populate this -->
+      </section>
     </main>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+  <script src="gallery.js"></script>
   <script>
-    const images = [
-      "images/model-tests/P1.jpg",
-      "images/model-tests/P2.jpg",
-      "images/model-tests/P3.jpg",
-      "images/model-tests/P4.jpg",
-      "images/model-tests/P5.jpg",
-      "images/model-tests/P6.jpg",
-      "images/model-tests/P7.jpg",
-      "images/model-tests/P8.jpg",
-      "images/model-tests/P9.jpg",
-      "images/model-tests/P10.jpg",
-      "images/model-tests/P11.jpg",
-      "images/model-tests/P12.jpg",
-      "images/model-tests/P13.jpg",
-      "images/model-tests/P14.jpg",
-      "images/model-tests/P15.jpg",
-      "images/model-tests/P16.jpg",
-      "images/model-tests/P17.jpg",
-      "images/model-tests/P18.jpg",
-      "images/model-tests/P19.jpg",
-      "images/model-tests/P20.jpg",
-      "images/model-tests/P21.jpg",
-      "images/model-tests/P22.jpg",
-      "images/model-tests/P23.jpg",
-      "images/model-tests/P24.jpg",
-      "images/model-tests/P25.jpg",
-      "images/model-tests/P26.jpg",
-      "images/model-tests/P27.jpg",
-      "images/model-tests/P28.jpg",
-      "images/model-tests/P29.jpg",
-      "images/model-tests/P30.jpg",
-      "images/model-tests/P31.jpg",
-      "images/model-tests/P32.jpg",
-      "images/model-tests/P33.jpg",
-      "images/model-tests/P34.jpg",
-      "images/model-tests/P35.jpg",
-      "images/model-tests/P36.jpg",
-      "images/model-tests/P37.jpg",
-      "images/model-tests/P38.jpg",
-      "images/model-tests/P39.jpg",
-      "images/model-tests/P40.jpg",
-      "images/model-tests/P41.jpg",
-      "images/model-tests/P42.jpg",
-      "images/model-tests/P43.jpg",
-      "images/model-tests/P44.jpg",
-      "images/model-tests/P45.jpg",
-      "images/model-tests/P46.jpg",
-      "images/model-tests/P47.jpg",
-      "images/model-tests/P48.jpg",
-      "images/model-tests/P49.jpg",
-      "images/model-tests/P50.jpg",
-      "images/model-tests/P51.jpg",
-      "images/model-tests/P52.jpg",
-      "images/model-tests/P53.jpg",
-      "images/model-tests/P54.jpg",
-      "images/model-tests/P55.jpg",
-      "images/model-tests/P56.jpg",
-      "images/model-tests/P57.jpg",
-      "images/model-tests/P58.jpg",
-      "images/model-tests/P59.jpg",
-      "images/model-tests/P60.jpg",
-      "images/model-tests/P61.jpg",
-      "images/model-tests/P62.jpg",
-      "images/model-tests/P63.jpg",
-      "images/model-tests/P64.jpg",
-      "images/model-tests/P65.jpg",
-      "images/model-tests/P66.jpg"
-    ];
-
-    for (let i = images.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [images[i], images[j]] = [images[j], images[i]];
-    }
-
-    let currentIndex = 0;
-
-    function updateImage() {
-      const img = document.getElementById("gallery-image");
-      img.src = images[currentIndex];
-    }
-
-    function nextImage() {
-      currentIndex = (currentIndex + 1) % images.length;
-      updateImage();
-    }
-
-    function prevImage() {
-      currentIndex = (currentIndex - 1 + images.length) % images.length;
-      updateImage();
-    }
-
-    updateImage();
-
     function toggleMenu() {
       const menu = document.getElementById('mobile-menu');
       menu.classList.toggle('hidden');
-    }
-
-    // Touch swipe support
-    let touchStartX = 0;
-    let touchEndX = 0;
-
-    const imageArea = document.getElementById('image-area');
-
-    imageArea.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    });
-
-    imageArea.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    });
-
-    function handleSwipe() {
-      const swipeDistance = touchEndX - touchStartX;
-      if (swipeDistance > 50) {
-        prevImage();
-      } else if (swipeDistance < -50) {
-        nextImage();
-      }
     }
   </script>
 </body>
