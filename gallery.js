@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
       mosaicView.appendChild(item);
     });
     
-    // Initialize Masonry with fixed column width for multi-column layout
+    // Initialize Masonry with dynamic column width
     initMasonry();
   }
 
@@ -78,13 +78,14 @@ document.addEventListener('DOMContentLoaded', () => {
     if (masonry) {
       masonry.destroy(); // Destroy previous if exists
     }
+    const columnWidth = window.innerWidth < 769 ? 140 : 240; // Mobile: 140px (2 columns), Desktop: 240px (4-5 columns)
     masonry = new Masonry(mosaicView, {
       itemSelector: '.gallery-item',
-      columnWidth: 240, // Fixed 240px columns for 4-5 across on desktop
+      columnWidth: columnWidth, // Dynamic for mobile/desktop
       gutter: 8, // Gap between items
       fitWidth: true // Centers the grid
     });
-    console.log('Masonry initialized with 240px columns');
+    console.log(`Masonry initialized with ${columnWidth}px columns`);
     masonry.layout(); // Force immediate layout
   }
 
@@ -110,6 +111,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   };
 
+  // Resize listener for responsive relayout
+  window.addEventListener('resize', () => {
+    if (isMosaicView && masonry) {
+      initMasonry(); // Re-init on resize (e.g., rotate phone)
+    }
+  });
+
   // Navigation for single view
   window.nextImage = function() {
     currentIndex = (currentIndex + 1) % images.length;
@@ -121,18 +129,18 @@ document.addEventListener('DOMContentLoaded', () => {
     updateSingleView();
   };
 
-  // Swipe support for single view
+  // Swipe support for single view (improved for mobile)
   let touchStartX = 0;
   let touchEndX = 0;
 
   singleView.addEventListener('touchstart', (e) => {
     touchStartX = e.changedTouches[0].screenX;
-  });
+  }, { passive: true });
 
   singleView.addEventListener('touchend', (e) => {
     touchEndX = e.changedTouches[0].screenX;
     const swipeThreshold = 50;
     if (touchEndX - touchStartX > swipeThreshold) prevImage();
     else if (touchStartX - touchEndX > swipeThreshold) nextImage();
-  });
+  }, { passive: true });
 });

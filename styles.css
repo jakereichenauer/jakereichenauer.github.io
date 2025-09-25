@@ -1,146 +1,464 @@
-let images = [];
-let currentIndex = 0;
-let isMosaicView = false;
-let masonry = null; // Masonry instance
+/* === Global Resets === */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('DOM loaded - initializing gallery');
-  const singleView = document.getElementById('single-view');
-  const mosaicView = document.getElementById('mosaic-view');
-  const toggleButton = document.getElementById('toggle-view');
-  const galleryImage = document.getElementById('gallery-image');
+html, body {
+  height: 100%;
+}
 
-  if (!singleView || !mosaicView || !toggleButton || !galleryImage) {
-    console.error('Missing DOM elements - check HTML IDs');
-    return;
+body {
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+}
+
+/* === Layout === */
+#canvas {
+  display: flex;
+  flex-direction: row;
+  max-width: 1500px;
+  width: 100%;
+  min-height: 100vh;
+  gap: 80px;
+  padding: 0 80px;
+}
+
+/* === Sidebar === */
+.sidebar {
+  width: 300px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.desktop-header {
+  display: block;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  line-height: 1.2;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.mobile-header,
+.mobile-title {
+  display: none;
+}
+
+.mobile-title {
+  font-size: 1.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 0;
+  color: #121212;
+}
+
+.nav-wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.sidebar nav ul li {
+  margin-bottom: 1rem;
+}
+
+.sidebar nav a {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #404040;
+}
+
+.sidebar nav a:hover {
+  color: #000;
+}
+
+/* === Main Image Area (Single View) === */
+.main-content {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  height: auto;
+  overflow-y: auto;
+}
+
+.image-area {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 80vh;
+  width: 100%;
+  min-height: 80vh;
+}
+
+.image-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  position: relative;
+}
+
+.image-wrapper img {
+  max-height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* === Click zones for arrow navigation (Desktop) === */
+.click-zone {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  opacity: 0;
+}
+
+.click-zone.left {
+  left: 0;
+  cursor: w-resize;
+}
+
+.click-zone.right {
+  right: 0;
+  cursor: e-resize;
+}
+
+.arrow-icon {
+  font-size: 2rem;
+  color: rgba(0, 0, 0, 0.4);
+  background: white;
+  border-radius: 3px;
+  padding: 0.2rem 0.5rem;
+  pointer-events: none;
+}
+
+/* === Side Arrows (Mobile) === */
+.side-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2.4rem;
+  color: rgba(80, 80, 80, 0.6);
+  background: none;
+  border: none;
+  padding: 0.2rem;
+  z-index: 10;
+  cursor: pointer;
+  user-select: none;
+  pointer-events: auto;
+  transition: color 0.2s ease;
+}
+
+.side-arrow.left {
+  left: 1rem;
+}
+
+.side-arrow.right {
+  right: 1rem;
+}
+
+.side-arrow:hover {
+  color: rgba(50, 50, 50, 0.85);
+}
+
+/* === Mosaic Gallery Styles (For Masonry: Column-Based, Gap-Free) === */
+.gallery {
+  width: 100%;
+  padding: 20px;
+  height: auto;
+}
+
+.gallery-item {
+  border-radius: 0; /* Square edges */
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.02);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* === Toggle Button === */
+.view-toggle {
+  text-align: center;
+  margin: 20px 0;
+}
+
+.view-toggle button {
+  background: rgba(255, 255, 255, 0.8);
+  border: 1px solid #ccc;
+  font-size: 14px;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #404040;
+}
+
+.view-toggle button:hover {
+  background: rgba(255, 255, 255, 1);
+  color: #000;
+}
+
+/* === Hide class === */
+.hidden {
+  display: none !important;
+}
+
+/* === Typography === */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: normal;
+  color: #121212;
+  margin-bottom: 1em;
+}
+
+p {
+  margin-bottom: 1em;
+}
+
+/* === About Text Styling === */
+.text-content {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  text-align: center;
+}
+
+/* === Menu Button (Mobile) === */
+.menu-toggle {
+  color: #000;
+  background: none;
+  border: 1px solid #000;
+  padding: 0.4rem 0.8rem;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+  display: none;
+}
+
+/* === Desktop Nav === */
+.desktop-menu {
+  display: block;
+}
+
+/* === Mobile Nav === */
+#mobile-menu {
+  position: absolute;
+  top: 3.5rem;
+  left: 0;
+  right: 0;
+  background: white;
+  z-index: 1000;
+  display: none;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.3s ease, opacity 0.3s ease;
+}
+
+#mobile-menu:not(.hidden) {
+  max-height: 500px;
+  opacity: 1;
+}
+
+/* === Mobile Overrides === */
+@media screen and (max-width: 768px) {
+  html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
   }
 
-  // Ensure initial state: single view visible, mosaic hidden
-  singleView.classList.remove('hidden');
-  mosaicView.classList.add('hidden');
-
-  // Fallback images if JSON fails
-  const fallbackImages = [
-    { src: 'images/model-tests/P1.jpg', alt: 'Portfolio Image 1', type: 'normal', category: 'portfolio' },
-    { src: 'images/model-tests/P2.jpg', alt: 'Portfolio Image 2', type: 'tall', category: 'portfolio' }
-  ];
-
-  // Load JSON
-  fetch('gallery-data.json')
-    .then(response => {
-      console.log('Fetch response status:', response.status);
-      if (!response.ok) {
-        throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-      }
-      return response.json();
-    })
-    .then(data => {
-      console.log('JSON loaded successfully:', data.images.length, 'images');
-      images = data.images.sort(() => Math.random() - 0.5);
-      updateSingleView();
-      populateMosaicView();
-    })
-    .catch(error => {
-      console.error('JSON fetch error:', error);
-      images = fallbackImages;
-      updateSingleView();
-      populateMosaicView();
-      mosaicView.innerHTML = '<p>Using fallback images (check gallery-data.json).</p>';
-    });
-
-  function populateMosaicView() {
-    console.log('Populating mosaic with', images.length, 'images');
-    mosaicView.innerHTML = ''; // Clear previous content
-    images.forEach(image => {
-      const item = document.createElement('div');
-      item.className = `gallery-item ${image.type || 'normal'} ${image.category || ''}`;
-      
-      const link = document.createElement('a');
-      link.href = image.src;
-      link.setAttribute('data-lightbox', 'gallery');
-      link.setAttribute('data-title', image.alt);
-      
-      const img = document.createElement('img');
-      img.src = image.src;
-      img.alt = image.alt;
-      img.loading = 'lazy';
-      
-      link.appendChild(img);
-      item.appendChild(link);
-      mosaicView.appendChild(item);
-    });
-    
-    // Initialize Masonry with dynamic column width
-    initMasonry();
+  body {
+    flex-direction: column;
+    align-items: stretch;
   }
 
-  function initMasonry() {
-    if (masonry) {
-      masonry.destroy(); // Destroy previous if exists
-    }
-    const columnWidth = window.innerWidth < 769 ? 140 : 240; // Mobile: 140px (2 columns), Desktop: 240px (4-5 columns)
-    masonry = new Masonry(mosaicView, {
-      itemSelector: '.gallery-item',
-      columnWidth: columnWidth, // Dynamic for mobile/desktop
-      gutter: 8, // Gap between items
-      fitWidth: true // Centers the grid
-    });
-    console.log(`Masonry initialized with ${columnWidth}px columns`);
-    masonry.layout(); // Force immediate layout
+  #canvas {
+    flex-direction: column;
+    padding: 0;
+    gap: 0;
+    width: 100vw;
+    height: 100%;
   }
 
-  function updateSingleView() {
-    if (images.length > 0) {
-      galleryImage.src = images[currentIndex].src;
-      galleryImage.alt = images[currentIndex].alt;
-      console.log('Single view updated to:', images[currentIndex].src);
-    }
+  .desktop-header {
+    display: none;
   }
 
-  // Toggle function
-  window.toggleView = function() {
-    console.log('Toggle clicked - current view:', isMosaicView ? 'mosaic' : 'single');
-    isMosaicView = !isMosaicView;
-    singleView.classList.toggle('hidden', isMosaicView);
-    mosaicView.classList.toggle('hidden', !isMosaicView);
-    toggleButton.textContent = isMosaicView ? 'Switch to Single View' : 'Switch to Mosaic View';
-    
-    // Re-init Masonry when switching to mosaic
-    if (isMosaicView) {
-      setTimeout(initMasonry, 100); // Short delay for DOM update
-    }
-  };
+  .mobile-title {
+    display: block;
+    font-size: 1.2rem;
+  }
 
-  // Resize listener for responsive relayout
-  window.addEventListener('resize', () => {
-    if (isMosaicView && masonry) {
-      initMasonry(); // Re-init on resize (e.g., rotate phone)
-    }
-  });
+  .mobile-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    box-sizing: border-box;
+    background: white;
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+  }
 
-  // Navigation for single view
-  window.nextImage = function() {
-    currentIndex = (currentIndex + 1) % images.length;
-    updateSingleView();
-  };
+  .sidebar {
+    width: 100%;
+    padding: 64px 0 0 0;
+    margin: 0;
+    align-items: center;
+    text-align: center;
+  }
 
-  window.prevImage = function() {
-    currentIndex = (currentIndex - 1 + images.length) % images.length;
-    updateSingleView();
-  };
+  .menu-toggle {
+    display: block;
+    margin: 0;
+  }
 
-  // Swipe support for single view (improved for mobile)
-  let touchStartX = 0;
-  let touchEndX = 0;
+  .desktop-menu {
+    display: none;
+  }
 
-  singleView.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-  }, { passive: true });
+  #mobile-menu {
+    display: block;
+  }
 
-  singleView.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    const swipeThreshold = 50;
-    if (touchEndX - touchStartX > swipeThreshold) prevImage();
-    else if (touchStartX - touchEndX > swipeThreshold) nextImage();
-  }, { passive: true });
-});
+  #mobile-menu.hidden {
+    max-height: 0;
+    opacity: 0;
+  }
+
+  .nav-wrapper {
+    width: 100%;
+    align-items: center;
+    margin-top: 0.5rem;
+  }
+
+  .sidebar nav ul {
+    flex-direction: column;
+    gap: 0.75rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+  }
+
+  .sidebar nav ul li {
+    margin: 0.5rem 0;
+  }
+
+  .main-content {
+    flex: 1;
+    width: 100%;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: auto;
+    box-sizing: border-box;
+    min-height: calc(100vh - 64px);
+    overflow-y: auto;
+  }
+
+  .image-area {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    min-height: 60vh;
+  }
+
+  .image-wrapper {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .image-wrapper img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .gallery {
+    padding: 10px;
+    height: auto;
+    min-height: 60vh;
+  }
+
+  .gallery-item {
+    margin-bottom: 5px;
+  }
+
+  .text-content {
+    text-align: center;
+    padding: 2rem 1.5rem;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .text-content {
+    padding: 2rem;
+    text-align: left;
+  }
+}
+
+/* === Enhanced Fixes for Overlap and Sizing === */
+#single-view, #mosaic-view {
+  width: 100%;
+}
