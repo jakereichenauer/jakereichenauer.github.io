@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Update Gallery - Admin</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* Quick admin styles - drag zone */
+    .admin-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px;
+      text-align: center;
+    }
+    .drag-zone {
+      border: 2px dashed #ccc;
+      border-radius: 8px;
+      padding: 40px;
+      margin: 20px 0;
+      background: #f9f9f9;
+      transition: background 0.3s;
+    }
+    .drag-zone.dragover {
+      background: #e3f2fd;
+      border-color: #2196f3;
+    }
+    .preview {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 20px 0;
+      justify-content: center;
+    }
+    .preview img {
+      max-width: 100px;
+      max-height: 100px;
+      object-fit: cover;
+      border-radius: 4px;
+    }
+    #generate-btn {
+      background: #4caf50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    #generate-btn:hover {
+      background: #45a049;
+    }
+    #json-output {
+      background: #f5f5f5;
+      border: 1px solid #ddd;
+      padding: 10px;
+      margin: 20px 0;
+      white-space: pre-wrap;
+      text-align: left;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+  <div id="canvas">
+    <aside class="sidebar">
+      <h1 class="desktop-header">JAKE<br>REICHENAUER</h1>
+      <div class="mobile-header">
+        <h1 class="mobile-title">JAKE REICHENAUER</h1>
+        <button class="menu-toggle" onclick="toggleMenu()">Menu</button>
+      </div>
+      <div class="nav-wrapper">
+        <nav class="desktop-menu">
+          <ul>
+            <li><a href="index.html">Portfolio</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="https://instagram.com/jaketakesfotos" target="_blank">@jaketakesfotos</a></li>
+            <li><a href="admin.html">Admin</a></li> <!-- Add this link to your nav -->
+          </ul>
+        </nav>
+        <nav id="mobile-menu" class="hidden mobile-only">
+          <ul>
+            <li><a href="index.html">Portfolio</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="https://instagram.com/jaketakesfotos" target="_blank">@jaketakesfotos</a></li>
+            <li><a href="admin.html">Admin</a></li>
+          </ul>
+        </nav>
+      </div>
+    </aside>
+
+    <main class="main-content">
+      <div class="admin-container">
+        <h2>Drag & Drop Images to Update Gallery</h2>
+        <p>Drag images here (or click to browse). They'll preview, then generate JSON entries for `gallery-data.json`. Copy the snippet, paste into your JSON file, upload images to `images/model-tests/` (or subfolder), and push to GitHub.</p>
+        
+        <div id="drag-zone" class="drag-zone">
+          <p>Drop images here or click to select</p>
+          <input type="file" id="file-input" multiple accept="image/*" style="display: none;">
+        </div>
+        
+        <div id="preview" class="preview"></div>
+        
+        <button id="generate-btn">Generate JSON Snippet</button>
+        
+        <div id="json-output"></div>
+        
+        <p><small>Tip: For new images, name them like P67.jpg and upload to `images/model-tests/`. Edit alts/types as needed.</small></p>
+      </div>
+    </main>
+  </div>
+
+  <script src="gallery.js"></script> <!-- Reuse your toggleMenu if needed -->
+  <script>
+    function toggleMenu() {
+      const menu = document.getElementById('mobile-menu');
+      menu.classList.toggle('hidden');
+    }
+
+    // Drag & Drop Logic
+    const dragZone = document.getElementById('drag-zone');
+    const fileInput = document.getElementById('file-input');
+    const preview = document.getElementById('preview');
+    const generateBtn = document.getElementById('generate-btn');
+    const jsonOutput = document.getElementById('json-output');
+    let selectedFiles = [];
+
+    // Click to browse
+    dragZone.addEventListener('click', () => fileInput.click());
+
+    // Drag events
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+      dragZone.addEventListener(eventName, preventDefaults, false);
+    });
+
+    function preventDefaults(e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dragZone.addEventListener(eventName, highlight, false);
+    });
+
+    ['dragleave', 'drop'].forEach(eventName => {
+      dragZone.addEventListener(eventName, unhighlight, false);
+    });
+
+    function highlight(e) {
+      dragZone.classList.add('dragover');
+    }
+
+    function unhighlight(e) {
+      dragZone.classList.remove('dragover');
+    }
+
+    // Handle drop or file select
+    dragZone.addEventListener('drop', handleDrop, false);
+    fileInput.addEventListener('change', handleFiles, false);
+
+    function handleDrop(e) {
+      const dt = e.dataTransfer;
+      const files = dt.files;
+      handleFiles(files);
+    }
+
+    function handleFiles(files) {
+      selectedFiles = Array.from(files).filter(file => file.type.startsWith('image/'));
+      preview.innerHTML = '';
+      selectedFiles.forEach((file, index) => {
+        const img = document.createElement('img');
+        img.src = URL.createObjectURL(file);
+        img.alt = file.name;
+        preview.appendChild(img);
+      });
+      generateBtn.style.display = selectedFiles.length > 0 ? 'block' : 'none';
+    }
+
+    // Generate JSON
+    generateBtn.addEventListener('click', () => {
+      const types = ['normal', 'tall', 'wide'];
+      const snippets = selectedFiles.map((file, index) => {
+        const type = types[Math.floor(Math.random() * types.length)];
+        const alt = prompt(`Alt text for ${file.name}? (e.g., "Portfolio Image: Description")`, `New Portfolio Image ${index + 1}: Model test shoot`);
+        const src = `images/model-tests/${file.name}`; // Assumes model-tests folder; change if needed
+        return `{
+  "src": "${src}",
+  "alt": "${alt}",
+  "type": "${type}",
+  "category": "portfolio"
+}`;
+      }).join(',\n\n');
+
+      jsonOutput.innerHTML = `Copy this into gallery-data.json (inside the "images" array):\n\n[\n${snippets}\n]`;
+      jsonOutput.style.display = 'block';
+      
+      // Auto-copy to clipboard
+      navigator.clipboard.writeText(`[\n${snippets}\n]`).then(() => {
+        alert('JSON snippet copied to clipboard!');
+      });
+    });
+  </script>
+</body>
+</html>
