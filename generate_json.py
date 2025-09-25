@@ -5,7 +5,7 @@ import random
 def generate_gallery_json(folder_path='images/model-tests', output_file='gallery-data.json'):
     """
     Scan the specified folder (recursive for subfolders) and generate gallery-data.json.
-    - Auto-paths: images/subfolder/filename.jpg
+    - Auto-paths: images/model-tests/filename.jpg (keeps subfolder)
     - Alts: Simple "Portfolio Image: filename" (edit later)
     - Types: Random 'normal', 'tall', 'wide' for mosaic variety
     - Categories: Auto-detect from subfolder (e.g., 'portfolio' default, 'bodywear' if in bodywear/)
@@ -14,7 +14,7 @@ def generate_gallery_json(folder_path='images/model-tests', output_file='gallery
     for root, dirs, files in os.walk(folder_path):
         for file in files:
             if file.lower().endswith(('.jpg', '.jpeg', '.png')):  # Handles jpg/JPG
-                rel_path = os.path.join(root, file).replace(folder_path, '').replace('\\', '/').lstrip('/')
+                rel_path = os.path.relpath(os.path.join(root, file), 'images').replace('\\', '/')
                 alt = f"Portfolio Image: {file}"  # Customize prompt if needed
                 types = ['normal', 'tall', 'wide']
                 type_ = random.choice(types)
