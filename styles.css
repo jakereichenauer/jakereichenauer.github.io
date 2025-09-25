@@ -196,7 +196,7 @@ body {
   color: rgba(50, 50, 50, 0.85);
 }
 
-/* === Mosaic Gallery Styles (For Masonry: Column-Based, Gap-Free) === */
+/* === Mosaic Gallery Styles (For Masonry: 3-Column Desktop, 2-Column Mobile) === */
 .gallery {
   width: 100%;
   padding: 20px;
@@ -221,15 +221,17 @@ body {
   display: block;
 }
 
-/* Desktop: 3 columns (33.33% width minus gutter) */
-.gallery-item {
-  width: calc(33.33% - 8px);
+/* Desktop: 3 columns (33.33% width minus gutter adjustment) */
+@media screen and (min-width: 769px) {
+  .gallery-item {
+    width: calc(33.33% - 5.33px); /* Adjust for 8px gutter across 3 columns */
+  }
 }
 
-/* Mobile: 2 columns (50% width minus gutter) */
+/* Mobile: 2 columns (50% width minus gutter adjustment) */
 @media screen and (max-width: 768px) {
   .gallery-item {
-    width: calc(50% - 8px);
+    width: calc(50% - 4px); /* Adjust for 8px gutter across 2 columns */
   }
 }
 

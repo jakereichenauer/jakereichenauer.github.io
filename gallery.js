@@ -70,7 +70,7 @@ document.addEventListener('DOMContentLoaded', () => {
       mosaicView.appendChild(item);
     });
     
-    // Initialize Masonry with dynamic column width
+    // Initialize Masonry with percentage-based layout
     initMasonry();
   }
 
@@ -78,14 +78,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (masonry) {
       masonry.destroy(); // Destroy previous if exists
     }
-    const columnWidth = window.innerWidth < 769 ? 120 : 200; // Mobile: 120px (2 columns), Desktop: 200px (6-7 columns)
     masonry = new Masonry(mosaicView, {
       itemSelector: '.gallery-item',
-      columnWidth: columnWidth, // Dynamic for multi-column
+      percentPosition: true, // Use percentage widths from CSS
       gutter: 8,
       fitWidth: true // Centers the grid
     });
-    console.log(`Masonry initialized with ${columnWidth}px columns`);
+    console.log('Masonry initialized with percentage positions');
     masonry.layout(); // Force immediate layout
   }
 
@@ -97,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Toggle function
   window.toggleView = function() {
     console.log('Toggle clicked - current view:', isMosaicView ? 'mosaic' : 'single');
     isMosaicView = !isMosaicView;
@@ -140,7 +138,7 @@ document.addEventListener('DOMContentLoaded', () => {
   singleView.addEventListener('touchend', (e) => {
     touchEndX = e.changedTouches[0].screenX;
     const swipeThreshold = 50;
-    if (touchEndX - touchStartX > swipeThreshold) prevImage();
-    else if (touchStartX - touchEndX > swipeThreshold) nextImage();
+    if (touchEndX - touchStartX > swipeThreshold) window.prevImage();
+    else if (touchStartX - touchEndX > swipeThreshold) window.nextImage();
   }, { passive: true });
 });
