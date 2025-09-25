@@ -101,10 +101,12 @@ body {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start; /* Top-align instead of center to allow full growth */
   align-items: center;
   padding-top: 80px;
   padding-bottom: 80px;
+  height: auto; /* Allow full height expansion */
+  overflow-y: auto; /* Enable vertical scrolling for tall content */
 }
 
 .image-area {
@@ -197,11 +199,14 @@ body {
 /* === Mosaic Gallery Styles (Pixieset-Like: Variable, No Crop, Tight Fit) === */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 8px;
   padding: 20px;
   width: 100%;
+  height: auto; /* Allow full expansion */
   min-height: 80vh;
+  justify-content: start; /* Top-align items for natural flow */
+  justify-items: start;
 }
 
 .gallery-item {
@@ -209,6 +214,9 @@ body {
   border-radius: 8px;
   height: auto;
   aspect-ratio: auto;
+  display: flex; /* Center image in tile if needed */
+  align-items: center;
+  justify-content: center;
   transition: transform 0.3s ease;
 }
 
@@ -412,11 +420,12 @@ p {
     padding: 10px 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start; /* Top-align for scrolling */
     align-items: center;
     height: auto;
     box-sizing: border-box;
     min-height: calc(100vh - 64px);
+    overflow-y: auto; /* Enable scrolling for tall grid */
   }
 
   .image-area {
@@ -446,11 +455,13 @@ p {
   }
 
   .gallery {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 5px;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 6px;
     padding: 10px;
     height: auto;
     min-height: 60vh;
+    justify-content: start;
+    justify-items: start;
   }
 
   .gallery-item.tall, .gallery-item.wide {
