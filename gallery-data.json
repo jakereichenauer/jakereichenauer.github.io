@@ -3,32 +3,398 @@
     {
       "src": "images/model-tests/P1.jpg",
       "alt": "Portfolio Image 1: Model test shoot",
-      "type": "normal",
+      "type": "tall",
       "category": "portfolio"
     },
     {
       "src": "images/model-tests/P2.jpg",
-      "alt": "Portfolio Image 2: Outdoor portrait",
+      "alt": "Portfolio Image 2: Model test shoot",
       "type": "tall",
       "category": "portfolio"
     },
     {
       "src": "images/model-tests/P3.jpg",
-      "alt": "Portfolio Image 3: Studio lighting",
+      "alt": "Portfolio Image 3: Model test shoot",
+      "type": "normal",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P4.jpg",
+      "alt": "Portfolio Image 4: Model test shoot",
       "type": "wide",
       "category": "portfolio"
     },
     {
-      "src": "images/books/book1.jpg",
-      "alt": "Book Cover 1: Sci-fi novel",
+      "src": "images/model-tests/P5.jpg",
+      "alt": "Portfolio Image 5: Model test shoot",
       "type": "normal",
-      "category": "books"
+      "category": "portfolio"
     },
     {
-      "src": "images/books/book2.jpg",
-      "alt": "Book Cover 2: Fantasy novel",
+      "src": "images/model-tests/P6.jpg",
+      "alt": "Portfolio Image 6: Model test shoot",
+      "type": "wide",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P7.jpg",
+      "alt": "Portfolio Image 7: Model test shoot",
+      "type": "wide",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P8.jpg",
+      "alt": "Portfolio Image 8: Model test shoot",
+      "type": "wide",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P9.jpg",
+      "alt": "Portfolio Image 9: Model test shoot",
+      "type": "wide",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P10.jpg",
+      "alt": "Portfolio Image 10: Model test shoot",
+      "type": "normal",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P11.jpg",
+      "alt": "Portfolio Image 11: Model test shoot",
       "type": "tall",
-      "category": "books"
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P12.jpg",
+      "alt": "Portfolio Image 12: Model test shoot",
+      "type": "normal",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P13.jpg",
+      "alt": "Portfolio Image 13: Model test shoot",
+      "type": "wide",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P14.jpg",
+      "alt": "Portfolio Image 14: Model test shoot",
+      "type": "tall",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P15.jpg",
+      "alt": "Portfolio Image 15: Model test shoot",
+      "type": "tall",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P16.jpg",
+      "alt": "Portfolio Image 16: Model test shoot",
+      "type": "wide",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P17.jpg",
+      "alt": "Portfolio Image 17: Model test shoot",
+      "type": "normal",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P18.jpg",
+      "alt": "Portfolio Image 18: Model test shoot",
+      "type": "wide",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P19.jpg",
+      "alt": "Portfolio Image 19: Model test shoot",
+      "type": "normal",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P20.jpg",
+      "alt": "Portfolio Image 20: Model test shoot",
+      "type": "wide",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P21.jpg",
+      "alt": "Portfolio Image 21: Model test shoot",
+      "type": "normal",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P22.jpg",
+      "alt": "Portfolio Image 22: Model test shoot",
+      "type": "normal",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P23.jpg",
+      "alt": "Portfolio Image 23: Model test shoot",
+      "type": "tall",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P24.jpg",
+      "alt": "Portfolio Image 24: Model test shoot",
+      "type": "wide",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P25.jpg",
+      "alt": "Portfolio Image 25: Model test shoot",
+      "type": "tall",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P26.jpg",
+      "alt": "Portfolio Image 26: Model test shoot",
+      "type": "normal",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P27.jpg",
+      "alt": "Portfolio Image 27: Model test shoot",
+      "type": "normal",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P28.jpg",
+      "alt": "Portfolio Image 28: Model test shoot",
+      "type": "tall",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P29.jpg",
+      "alt": "Portfolio Image 29: Model test shoot",
+      "type": "normal",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P30.jpg",
+      "alt": "Portfolio Image 30: Model test shoot",
+      "type": "normal",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P31.jpg",
+      "alt": "Portfolio Image 31: Model test shoot",
+      "type": "normal",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P32.jpg",
+      "alt": "Portfolio Image 32: Model test shoot",
+      "type": "tall",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P33.jpg",
+      "alt": "Portfolio Image 33: Model test shoot",
+      "type": "wide",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P34.jpg",
+      "alt": "Portfolio Image 34: Model test shoot",
+      "type": "wide",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P35.jpg",
+      "alt": "Portfolio Image 35: Model test shoot",
+      "type": "wide",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P36.jpg",
+      "alt": "Portfolio Image 36: Model test shoot",
+      "type": "wide",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P37.jpg",
+      "alt": "Portfolio Image 37: Model test shoot",
+      "type": "tall",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P38.jpg",
+      "alt": "Portfolio Image 38: Model test shoot",
+      "type": "wide",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P39.jpg",
+      "alt": "Portfolio Image 39: Model test shoot",
+      "type": "tall",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P40.jpg",
+      "alt": "Portfolio Image 40: Model test shoot",
+      "type": "wide",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P41.jpg",
+      "alt": "Portfolio Image 41: Model test shoot",
+      "type": "tall",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P42.jpg",
+      "alt": "Portfolio Image 42: Model test shoot",
+      "type": "tall",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P43.jpg",
+      "alt": "Portfolio Image 43: Model test shoot",
+      "type": "normal",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P44.jpg",
+      "alt": "Portfolio Image 44: Model test shoot",
+      "type": "wide",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P45.jpg",
+      "alt": "Portfolio Image 45: Model test shoot",
+      "type": "tall",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P46.jpg",
+      "alt": "Portfolio Image 46: Model test shoot",
+      "type": "tall",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P47.jpg",
+      "alt": "Portfolio Image 47: Model test shoot",
+      "type": "tall",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P48.jpg",
+      "alt": "Portfolio Image 48: Model test shoot",
+      "type": "wide",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P49.jpg",
+      "alt": "Portfolio Image 49: Model test shoot",
+      "type": "tall",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P50.jpg",
+      "alt": "Portfolio Image 50: Model test shoot",
+      "type": "normal",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P51.jpg",
+      "alt": "Portfolio Image 51: Model test shoot",
+      "type": "normal",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P52.jpg",
+      "alt": "Portfolio Image 52: Model test shoot",
+      "type": "tall",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P53.jpg",
+      "alt": "Portfolio Image 53: Model test shoot",
+      "type": "wide",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P54.jpg",
+      "alt": "Portfolio Image 54: Model test shoot",
+      "type": "tall",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P55.jpg",
+      "alt": "Portfolio Image 55: Model test shoot",
+      "type": "wide",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P56.jpg",
+      "alt": "Portfolio Image 56: Model test shoot",
+      "type": "wide",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P57.jpg",
+      "alt": "Portfolio Image 57: Model test shoot",
+      "type": "tall",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P58.jpg",
+      "alt": "Portfolio Image 58: Model test shoot",
+      "type": "normal",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P59.jpg",
+      "alt": "Portfolio Image 59: Model test shoot",
+      "type": "tall",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P60.jpg",
+      "alt": "Portfolio Image 60: Model test shoot",
+      "type": "normal",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P61.jpg",
+      "alt": "Portfolio Image 61: Model test shoot",
+      "type": "wide",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P62.jpg",
+      "alt": "Portfolio Image 62: Model test shoot",
+      "type": "wide",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P63.jpg",
+      "alt": "Portfolio Image 63: Model test shoot",
+      "type": "normal",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P64.jpg",
+      "alt": "Portfolio Image 64: Model test shoot",
+      "type": "wide",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P65.jpg",
+      "alt": "Portfolio Image 65: Model test shoot",
+      "type": "tall",
+      "category": "portfolio"
+    },
+    {
+      "src": "images/model-tests/P66.jpg",
+      "alt": "Portfolio Image 66: Model test shoot",
+      "type": "wide",
+      "category": "portfolio"
     }
   ]
 }
