@@ -194,7 +194,7 @@ body {
   color: rgba(50, 50, 50, 0.85);
 }
 
-/* === Mosaic Gallery Styles === */
+/* === Mosaic Gallery Styles (Pinterest-Style: No Cropping, Variable Sizes) === */
 .gallery {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -207,21 +207,23 @@ body {
 .gallery-item {
   overflow: hidden;
   border-radius: 8px;
+  /* Allow variable heights based on image aspect ratio */
+  height: auto;
 }
 
 .gallery-item img {
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: auto; /* Key change: Preserve original height/aspect ratio */
+  object-fit: contain; /* No cropping—shows full image with space if needed */
   display: block;
 }
 
 .gallery-item.tall {
-  grid-row: span 2;
+  grid-row: span 2; /* Spans 2 rows for tall images */
 }
 
 .gallery-item.wide {
-  grid-column: span 2;
+  grid-column: span 2; /* Spans 2 columns for wide images */
 }
 
 /* === Toggle Button === */
