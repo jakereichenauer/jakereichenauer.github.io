@@ -101,12 +101,12 @@ body {
   flex-grow: 1;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Top-align to allow full growth */
+  justify-content: flex-start;
   align-items: center;
   padding-top: 80px;
   padding-bottom: 80px;
-  height: auto; /* Full expansion, no viewport constraint */
-  overflow-y: auto; /* Scroll for tall content */
+  height: auto;
+  overflow-y: auto;
 }
 
 .image-area {
@@ -196,26 +196,18 @@ body {
   color: rgba(50, 50, 50, 0.85);
 }
 
-/* === Mosaic Gallery Styles (Pixieset-Like: Variable, No Crop, Tight Fit) === */
+/* === Mosaic Gallery Styles (For Masonry: Column-Based, Gap-Free) === */
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 8px;
-  padding: 20px;
   width: 100%;
-  height: auto; /* Full growth, no min-height constraint */
-  justify-content: start; /* Top-align for natural scroll */
-  justify-items: start;
+  padding: 20px;
+  height: auto;
+  /* Masonry will handle layout; CSS provides base */
 }
 
 .gallery-item {
+  border-radius: 0; /* Square edges */
   overflow: hidden;
-  border-radius: 0; /* Square edges, no rounding */
-  height: auto;
-  aspect-ratio: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  margin-bottom: 8px; /* Gap between items */
   transition: transform 0.3s ease;
 }
 
@@ -228,14 +220,6 @@ body {
   height: auto;
   object-fit: contain;
   display: block;
-}
-
-.gallery-item.tall {
-  grid-row: span 2;
-}
-
-.gallery-item.wide {
-  grid-column: span 2;
 }
 
 /* === Toggle Button === */
@@ -419,12 +403,12 @@ p {
     padding: 10px 0;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Top-align for scrolling */
+    justify-content: flex-start;
     align-items: center;
     height: auto;
     box-sizing: border-box;
     min-height: calc(100vh - 64px);
-    overflow-y: auto; /* Enable scrolling for tall grid */
+    overflow-y: auto;
   }
 
   .image-area {
@@ -454,22 +438,13 @@ p {
   }
 
   .gallery {
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: 6px;
     padding: 10px;
     height: auto;
     min-height: 60vh;
-    justify-content: start;
-    justify-items: start;
   }
 
-  .gallery-item.tall, .gallery-item.wide {
-    grid-row: span 1;
-    grid-column: span 1;
-  }
-
-  .gallery-item img {
-    height: auto;
+  .gallery-item {
+    margin-bottom: 5px;
   }
 
   .text-content {
