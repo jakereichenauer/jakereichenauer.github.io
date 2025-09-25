@@ -63,23 +63,30 @@ document.addEventListener('DOMContentLoaded', () => {
       const img = document.createElement('img');
       img.src = image.src;
       img.alt = image.alt;
-      img.loading = 'lazy';
+      // Remove loading="lazy" for now to ensure immediate Masonry init
+      // img.loading = 'lazy'; // Re-add later if needed
       
       link.appendChild(img);
       item.appendChild(link);
       mosaicView.appendChild(item);
     });
     
-    // Initialize Masonry after images load
-    imagesLoaded(mosaicView, () => {
-      masonry = new Masonry(mosaicView, {
-        itemSelector: '.gallery-item',
-        columnWidth: '.gallery-item',
-        gutter: 8, // Matches CSS gap
-        fitWidth: true // Centers the grid
-      });
-      console.log('Masonry initialized');
+    // Initialize Masonry immediately (no wait for loads to avoid delay)
+    initMasonry();
+  }
+
+  function initMasonry() {
+    if (masonry) {
+      masonry.destroy(); // Destroy previous if exists
+    }
+    masonry = new Masonry(mosaicView, {
+      itemSelector: '.gallery-item',
+      columnWidth: '.gallery-item',
+      gutter: 8, // Matches desired gap
+      fitWidth: true // Centers the grid
     });
+    console.log('Masonry initialized');
+    masonry.layout(); // Force immediate layout
   }
 
   function updateSingleView() {
@@ -98,9 +105,9 @@ document.addEventListener('DOMContentLoaded', () => {
     mosaicView.classList.toggle('hidden', !isMosaicView);
     toggleButton.textContent = isMosaicView ? 'Switch to Single View' : 'Switch to Mosaic View';
     
-    // Relayout Masonry if switching back
-    if (!isMosaicView && masonry) {
-      masonry.layout();
+    // Re-init Masonry when switching to mosaic
+    if (isMosaicView) {
+      setTimeout(initMasonry, 100); // Short delay for DOM update
     }
   };
 
@@ -130,24 +137,3 @@ document.addEventListener('DOMContentLoaded', () => {
     else if (touchStartX - touchEndX > swipeThreshold) nextImage();
   });
 });
-
-// Polyfill for imagesLoaded (wait for images to load before Masonry)
-function imagesLoaded(parent, callback) {
-  const items = parent.querySelectorAll('img');
-  let loadedCount = 0;
-  if (items.length === 0) {
-    callback();
-    return;
-  }
-  items.forEach(img => {
-    if (img.complete) {
-      loadedCount++;
-    } else {
-      img.addEventListener('load', () => {
-        loadedCount++;
-        if (loadedCount === items.length) callback();
-      });
-    }
-  });
-  if (loadedCount === items.length) callback();
-}
