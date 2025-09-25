@@ -114,6 +114,7 @@ body {
   position: relative;
   height: 80vh;
   width: 100%;
+  min-height: 80vh;
 }
 
 .image-wrapper {
@@ -126,7 +127,7 @@ body {
 
 .image-wrapper img {
   max-height: 100%;
-  width: auto;
+  max-width: 100%;
   object-fit: contain;
   display: block;
 }
@@ -200,6 +201,7 @@ body {
   gap: 10px;
   padding: 20px;
   width: 100%;
+  min-height: 80vh;
 }
 
 .gallery-item {
@@ -246,7 +248,7 @@ body {
 
 /* === Hide class === */
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 /* === Typography === */
@@ -407,6 +409,7 @@ p {
     align-items: center;
     height: auto;
     box-sizing: border-box;
+    min-height: calc(100vh - 64px);
   }
 
   .image-area {
@@ -417,6 +420,7 @@ p {
     justify-content: center;
     position: relative;
     overflow: hidden;
+    min-height: 60vh;
   }
 
   .image-wrapper {
@@ -437,11 +441,17 @@ p {
   .gallery {
     grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     padding: 10px;
+    height: auto;
+    min-height: 60vh;
   }
 
   .gallery-item.tall, .gallery-item.wide {
     grid-row: span 1;
     grid-column: span 1;
+  }
+
+  .gallery-item img {
+    height: auto;
   }
 
   .text-content {
@@ -455,4 +465,9 @@ p {
     padding: 2rem;
     text-align: left;
   }
+}
+
+/* === Enhanced Fixes for Overlap and Sizing === */
+#single-view, #mosaic-view {
+  width: 100%;
 }
