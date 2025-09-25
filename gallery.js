@@ -63,15 +63,14 @@ document.addEventListener('DOMContentLoaded', () => {
       const img = document.createElement('img');
       img.src = image.src;
       img.alt = image.alt;
-      // Remove loading="lazy" for now to ensure immediate Masonry init
-      // img.loading = 'lazy'; // Re-add later if needed
+      img.loading = 'lazy';
       
       link.appendChild(img);
       item.appendChild(link);
       mosaicView.appendChild(item);
     });
     
-    // Initialize Masonry immediately (no wait for loads to avoid delay)
+    // Initialize Masonry with fixed column width for multi-column layout
     initMasonry();
   }
 
@@ -81,11 +80,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     masonry = new Masonry(mosaicView, {
       itemSelector: '.gallery-item',
-      columnWidth: '.gallery-item',
-      gutter: 8, // Matches desired gap
+      columnWidth: 240, // Fixed 240px columns for 4-5 across on desktop
+      gutter: 8, // Gap between items
       fitWidth: true // Centers the grid
     });
-    console.log('Masonry initialized');
+    console.log('Masonry initialized with 240px columns');
     masonry.layout(); // Force immediate layout
   }
 

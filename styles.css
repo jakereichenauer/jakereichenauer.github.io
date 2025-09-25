@@ -201,12 +201,12 @@ body {
   width: 100%;
   padding: 20px;
   height: auto;
-  /* Masonry will handle layout; CSS provides base */
 }
 
 .gallery-item {
   border-radius: 0; /* Square edges */
   overflow: hidden;
+  width: 240px; /* Fixed width for consistent columns */
   margin-bottom: 8px; /* Gap between items */
   transition: transform 0.3s ease;
 }
@@ -444,6 +444,7 @@ p {
   }
 
   .gallery-item {
+    width: 160px; /* Mobile column width */
     margin-bottom: 5px;
   }
 
