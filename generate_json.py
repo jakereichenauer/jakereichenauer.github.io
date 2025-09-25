@@ -2,9 +2,9 @@ import os
 import json
 import random
 
-def generate_gallery_json(folder_path='images', output_file='gallery-data.json'):
+def generate_gallery_json(folder_path='images/model-tests', output_file='gallery-data.json'):
     """
-    Scan the 'images' folder (recursive for subfolders) and generate gallery-data.json.
+    Scan the specified folder (recursive for subfolders) and generate gallery-data.json.
     - Auto-paths: images/subfolder/filename.jpg
     - Alts: Simple "Portfolio Image: filename" (edit later)
     - Types: Random 'normal', 'tall', 'wide' for mosaic variety
@@ -39,5 +39,5 @@ def generate_gallery_json(folder_path='images', output_file='gallery-data.json')
     print(f"Generated {len(images)} entries in {output_file}")
     print("Upload the new gallery-data.json and images to GitHub, then refresh your site!")
 
-# Run it (scans 'images' folder)
+# Run it (scans only 'images/model-tests' folder by default)
 generate_gallery_json()
