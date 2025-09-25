@@ -206,6 +206,7 @@ body {
 .gallery-item {
   border-radius: 0; /* Square edges */
   overflow: hidden;
+  margin-bottom: 8px; /* Gutter spacing */
   transition: transform 0.3s ease;
 }
 
@@ -218,6 +219,18 @@ body {
   height: auto;
   object-fit: contain;
   display: block;
+}
+
+/* Desktop: 3 columns (33.33% width minus gutter) */
+.gallery-item {
+  width: calc(33.33% - 8px);
+}
+
+/* Mobile: 2 columns (50% width minus gutter) */
+@media screen and (max-width: 768px) {
+  .gallery-item {
+    width: calc(50% - 8px);
+  }
 }
 
 /* === Toggle Button === */
